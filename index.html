@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<style> 
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+h1 {
+	padding-left: 41.5%;
+	padding-top: 120px;
+	position: absolute;
+	font-size: 40px;
+
+}
+
+body {
+    position: relative;
+	height: 100vh;
+	display: flex;
+	background: #ffcc00;
+}
+
+main {
+	margin: auto;
+}
+table,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	background: #49ea5d;
+}
+td {
+	width:  100px;
+	height: 100px;
+	font-size: 35px;
+	cursor: pointer;
+	user-select: none;
+	text-align: center;
+}
+</style>
+
+
+<body>
+<h1>X and O Game</h1>
+<h3>Score:</h3>
+<main></main>
+<div id="adil"></div>
+
+
+</body>
+<script>
+let x = "X";
+let o = "O";
+let count = 1;
+let M = [];
+let n = 3;
+
+let ad = 0;
+let adi = 0;
+
+onload = function () {
+  Start();
+};
+
+function Start() {
+  count = 1;
+  Arr();
+  Table();
+ 
+}
+
+function Arr() {
+  for (let i = 0; i < n; i++) {
+    M[i] = [];
+  }
+}
+
+function Table() {
+  let tbl = "<table>";
+  for (let i = 0; i < n; i++) {
+    tbl += "<tr>";
+    for (let j = 0; j < n; j++) {
+      M[i][j] = M[i][j] === undefined ? "" : M[i][j];
+      tbl += `<td onclick="Click(${i},${j})">${M[i][j]}</td>`;
+    }
+    tbl += "</tr>";
+  }
+  tbl += "</table>";
+  document.getElementsByTagName("main")[0].innerHTML = tbl;
+}
+
+function Click(i, j) {
+  if (M[i][j] === "") {
+  	
+    if (count % 2 == 0) {
+     let ad = 0;
+      M[i][j] = o;
+     
+   
+
+    } else {
+      M[i][j] = x;
+    }
+    count++;
+
+    Table();
+    setTimeout(Check,300);
+
+  }
+
+}
+
+function Check() {
+
+    if(M[0][0]==M[1][1] && M[0][0]==M[2][2] && M[0][0]!=""){
+    	
+          
+        alert("Win! " + M[0][0]);
+      
+    
+    location.reload();
+      
+         // 
+    }
+  
+
+    if(M[0][2]==M[1][1] && M[0][2]==M[2][0] && M[0][2]!=""){
+        alert("Win! " + M[0][2]);
+        location.reload();
+
+    }
+    if(M[0][2]==M[1][2] && M[0][2]==M[2][2] && M[2][2]!=""){
+        alert("Win! " + M[2][2]);
+        location.reload();
+    }
+     if(M[0][0]==M[0][1] && M[0][2]==M[0][1] && M[0][1]!=""){
+        alert("Win! " + M[0][1]);
+        location.reload();
+    }
+     if(M[0][0]==M[1][0] && M[1][0]==M[2][0] && M[2][0]!=""){
+        alert("Win! " + M[2][0]);
+        location.reload();
+    }
+     if(M[1][0]==M[1][1] && M[1][0]==M[1][2] && M[1][2]!=""){
+        alert("Win! " + M[1][2]);
+        location.reload();
+    }
+     if(M[0][1]==M[1][1] && M[2][1]==M[0][1] && M[2][1]!=""){
+        alert("Win! " + M[2][1]);
+        location.reload();
+    }
+
+}
+
+
+
+</script>
+
+
+
+</script>
+
+
+
+
